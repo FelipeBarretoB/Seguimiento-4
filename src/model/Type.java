@@ -1,8 +1,8 @@
 package model;
 
-public class Type<T> {
-	T dato;
-	Type<T> next;
+public class Type<T> implements Comparable<T> {
+	private T dato;
+	private Type<T> next;
 	
 
 	public Type(T d) {
@@ -21,12 +21,31 @@ public class Type<T> {
 		return dato;
 	}
 	
-	public void addNext(Type<T> newNext){
+	
+	
+	public void setDato(T dato) {
+		this.dato = dato;
+	}
+	public void setNext(Type<T> next) {
+		this.next = next;
+	}
+	public void addNext(Type<T> next2){
 		if(next!=null) {
-			next.getNext().addNext(newNext);
+			
+			next.addNext(next2);
 		}else {
-			next=newNext;
+			next=next2;
 		}
+	}
+	
+	public int compareTo(Type<T> type) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int compareTo(T o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
