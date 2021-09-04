@@ -49,5 +49,15 @@ public class Type<T > implements Comparable<T > {
 		return this.compareTo(o);
 	}
 	
+	public String toString() {
+		String all = dato.toString();
+		if(this.getNext()!=null) {
+			all+=this.getNext();
+		}
+		return all;
+	}
 	
+	/*public String soloString() {
+		return dato.toString();
+	}*/
 }
