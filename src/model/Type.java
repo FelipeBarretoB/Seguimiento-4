@@ -49,5 +49,26 @@ public class Type<T > implements Comparable<T > {
 		return this.compareTo(o);
 	}
 	
+	public String toString() {
+		String all = dato.toString();
+		if(this.getNext()!=null) {
+			all+=this.getNext();
+		}
+		return all;
+	}
 	
+	public void sort() {
+		T temp = null;
+		
+		if(this.getNext()!= null) {
+			if (this.compareTo(this.getNext()) <0) {
+				temp = this.getDato();
+				this.setDato(this.getNext().getDato());
+				this.getNext().setDato(temp);
+				
+			}else {
+				this.getNext().sort();
+			}
+		}
+	}
 }
