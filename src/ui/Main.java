@@ -41,16 +41,19 @@ public class Main {
 	public <T> Type<T> order(Type<T> toOrder) {
 
 		Type<T> temp = null;
-		System.out.println(toOrder.compareTo(toOrder.getNext())<0);
-		if (toOrder.compareTo(toOrder.getNext()) <0) {
 		
-			temp = toOrder;
-			temp.setNext(toOrder.getNext().getNext());
+		if (toOrder.compareTo(toOrder.getNext()) <0) {
+			System.out.println("you good?"+toOrder.getNext());
+			//temp.setNext(toOrder.getNext().getNext());
+			System.out.println("you good?"+toOrder.getNext());
+			
+			System.out.println("you good?"+toOrder.getNext());
 			toOrder = toOrder.getNext();
 			
-			System.out.println(toOrder.getNext().getNext().getDato().toString());
-			System.out.println(toOrder.getNext().getDato().toString());
-			System.out.println(toOrder.getDato().toString());
+			System.out.println("you good?"+toOrder.getNext());
+			toOrder.setNext(temp);
+			
+			
 			
 		}
 		return toOrder;
