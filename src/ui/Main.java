@@ -18,7 +18,7 @@ public class Main {
 
 	public <T> String addNext(Type<T> start) throws IOException {
 		String line="";
-		bw.write("Que le quiere añadir a la lista");
+		bw.write("Que le quiere añadir a la lista, use enter para parar");
 		bw.newLine();
 		bw.flush();
 		line=br.readLine();
@@ -46,8 +46,6 @@ public class Main {
 	public Main() {
 		br= new BufferedReader(new InputStreamReader(System.in));
 		bw= new BufferedWriter(new OutputStreamWriter(System.out));
-		testInt = new Type<Integer>(1);
-		testString = new Type<String>("baba boy");
 	}
 
 	public Type<Integer> getTestInt(){
@@ -55,30 +53,6 @@ public class Main {
 	}
 	public Type<String> getTestString(){
 		return testString;
-	}
-	public <T> Type<T> order(Type<T> toOrder) {
-
-
-		T temp = null;
-		//Type<T> temp = null;
-		System.out.println(toOrder.compareTo(toOrder.getNext())<0);
-		if (toOrder.compareTo(toOrder.getNext()) <0) {
-		
-			/*temp = toOrder;
-			temp.setNext(toOrder.getNext().getNext());
-			toOrder = toOrder.getNext();*/
-			
-			temp = toOrder.getDato();
-			toOrder.setDato(toOrder.getNext().getDato());
-			toOrder.getNext().setDato(temp);
-			
-			//System.out.println(toOrder.getNext().getDato().toString());
-			//System.out.println(toOrder.getNext().getDato().toString());
-			//System.out.println(toOrder.getDato().toString());
-
-			
-		}
-		return toOrder;
 	}
 
 	public <T> String print(Type<T> toPrint) {
@@ -94,21 +68,12 @@ public class Main {
 	public static void main(String[] args ) {
 		Main ui= new Main();
 		try {
-			/*ui.<Integer>addNext(ui.getTestInt());
-			System.out.println(ui.print(ui.getTestInt()));
-			//ui.<Integer>addNext(ui.getTestInt());
-			ui.<String>addNext(ui.getTestString());
-			ui.testInt = ui.order(ui.getTestInt());*/
 			boolean finish = false;
 			int size = 1;
 			Type<Object> first= ui.<Object>addFirst();
-			/*for(int i = 0; i < 5; i++) {
-				ui.<Object>addNext(first);
-				size++;
-			}*/
 			
 			while(!finish) {
-				System.out.println(size);
+				System.out.println("Tamaño de la lista enlazada: "+size);
 				if(ui.<Object>addNext(first).equals("")) {
 					finish=true;
 					
@@ -116,11 +81,7 @@ public class Main {
 					size++;
 				}
 			}
-			/*for (int i = 0; i < size;i++){
-				ui.order(first);
-			}*/
 			first.sort();
-			//System.out.println(ui.print(ui.getTestInt()));
 			System.out.println(first.toString());
 		} catch (IOException e) {
 
