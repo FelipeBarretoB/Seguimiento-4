@@ -16,14 +16,21 @@ public class Main {
 	private BufferedWriter bw;
 
 
-	public <T> void addNext(Type<T> start) throws IOException {
-		
+	public <T> String addNext(Type<T> start) throws IOException {
+		String line="";
 		bw.write("Que le quiere añadir a la lista");
 		bw.newLine();
 		bw.flush();
-		T data= (T) br.readLine();
-		Type<T> next= new Type<T>(data);
-		start.addNext(next);
+		line=br.readLine();
+		if(line.equals("")) {
+			return "";
+		}else {
+			T data= (T) line;
+			Type<T> next= new Type<T>(data);
+			start.addNext(next);
+		}
+		return "a";
+		
 	}
 	
 	public <T> Type<T> addFirst() throws IOException {
@@ -64,9 +71,9 @@ public class Main {
 			toOrder.setDato(toOrder.getNext().getDato());
 			toOrder.getNext().setDato(temp);
 			
-			System.out.println(toOrder.getNext().getDato().toString());
-			System.out.println(toOrder.getNext().getDato().toString());
-			System.out.println(toOrder.getDato().toString());
+			//System.out.println(toOrder.getNext().getDato().toString());
+			//System.out.println(toOrder.getNext().getDato().toString());
+			//System.out.println(toOrder.getDato().toString());
 			
 		}
 		return toOrder;
@@ -90,12 +97,27 @@ public class Main {
 			//ui.<Integer>addNext(ui.getTestInt());
 			ui.<String>addNext(ui.getTestString());
 			ui.testInt = ui.order(ui.getTestInt());*/
-			
+			boolean finish = false;
+			int size = 1;
 			Type<Object> first= ui.<Object>addFirst();
-			for(int i = 0; i < 5; i++) {
+			/*for(int i = 0; i < 5; i++) {
 				ui.<Object>addNext(first);
-			}
+				size++;
+			}*/
 			
+			while(!finish) {
+				System.out.println(size);
+				if(ui.<Object>addNext(first).equals("")) {
+					finish=true;
+					
+				}else {
+					size++;
+				}
+			}
+			/*for (int i = 0; i < size;i++){
+				ui.order(first);
+			}*/
+			first.sort();
 			//System.out.println(ui.print(ui.getTestInt()));
 			System.out.println(first.toString());
 		} catch (IOException e) {
