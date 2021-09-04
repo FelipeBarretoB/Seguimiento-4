@@ -1,12 +1,13 @@
 package model;
 
-public class Type<T> implements Comparable<T> {
+public class Type<T > implements Comparable<T > {
 	private T dato;
 	private Type<T> next;
 	
 
 	public Type(T d) {
 		this.dato = d;
+		next=null;
 	}
 	public Type(T d, Type<T> n) {
 		this.dato = d;
@@ -38,14 +39,14 @@ public class Type<T> implements Comparable<T> {
 		}
 	}
 	
-	public int compareTo(Type<T> type) {
-		// TODO Auto-generated method stub
-		return 0;
+	public  int compareTo(Type<T> type) {
+		
+		return this.getDato().toString().compareTo(type.getDato().toString());
 	}
 	@Override
-	public int compareTo(T o) {
+	public  int compareTo(T o) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.compareTo(o);
 	}
 	
 	

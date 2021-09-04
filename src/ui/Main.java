@@ -28,7 +28,7 @@ public class Main {
 	public Main() {
 		br= new BufferedReader(new InputStreamReader(System.in));
 		bw= new BufferedWriter(new OutputStreamWriter(System.out));
-		testInt = new Type<Integer>(123);
+		testInt = new Type<Integer>(1);
 		testString = new Type<String>("baba boy");
 	}
 
@@ -38,40 +38,32 @@ public class Main {
 	public Type<String> getTestString(){
 		return testString;
 	}
-	public <T> void order(Type<T> toOrder) {
-
-		Type<T> countElements= toOrder;
-		int counter=0;
-		while(countElements.getNext()!=null) {
-			counter++;
-			countElements=countElements.getNext();
-		}
+	public <T> Type<T> order(Type<T> toOrder) {
 
 		Type<T> temp = null;
-		for (int i = 0; i < counter; i++) {
-			System.out.println("primer loop");
-			for (int j = 1; j < (counter - i); j++) {
-				System.out.println("segundo loop");
-				System.out.println(toOrder.compareTo(toOrder.getNext()));
-				if (toOrder.compareTo(toOrder.getNext()) >0) {
-					
-					temp = toOrder;
-					if(toOrder.getNext().getNext()!=null) {
-						temp.setNext(toOrder.getNext().getNext());
-					}
-					toOrder = toOrder.getNext();
-					toOrder.setNext(temp);
-				}
-			}
+		System.out.println(toOrder.compareTo(toOrder.getNext())<0);
+		if (toOrder.compareTo(toOrder.getNext()) <0) {
+		
+			temp = toOrder;
+			temp.setNext(toOrder.getNext().getNext());
+			toOrder = toOrder.getNext();
+			
+			toOrder.setNext(temp);
+			System.out.println(toOrder.getNext().getNext().getDato().toString());
+			System.out.println(toOrder.getNext().getDato().toString());
+			System.out.println(toOrder.getDato().toString());
+			
 		}
+		return toOrder;
 	}
-	
+
 	public <T> String print(Type<T> toPrint) {
 		String print="";
 		while(toPrint!=null) {
 			print+=toPrint.getDato().toString();
 			toPrint=toPrint.getNext();
 		}
+		
 		return print;
 	}
 
@@ -79,9 +71,11 @@ public class Main {
 		Main ui= new Main();
 		try {
 			ui.<Integer>addNext(ui.getTestInt());
-			ui.<Integer>addNext(ui.getTestInt());
+			System.out.println(ui.print(ui.getTestInt()));
+			//ui.<Integer>addNext(ui.getTestInt());
 			ui.<String>addNext(ui.getTestString());
-			ui.order(ui.getTestInt());
+			ui.testInt = ui.order(ui.getTestInt());
+			
 			System.out.println(ui.print(ui.getTestInt()));
 		} catch (IOException e) {
 
