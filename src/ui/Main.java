@@ -48,7 +48,6 @@ public class Main {
 			temp.setNext(toOrder.getNext().getNext());
 			toOrder = toOrder.getNext();
 			
-			toOrder.setNext(temp);
 			System.out.println(toOrder.getNext().getNext().getDato().toString());
 			System.out.println(toOrder.getNext().getDato().toString());
 			System.out.println(toOrder.getDato().toString());
